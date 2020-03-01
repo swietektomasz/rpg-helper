@@ -1,0 +1,9 @@
+{
+  "name": "rpg-helper",
+  "version": "1.0.0",
+  "description": "RPG helper to help with RPGs",
+  "main": "index.js",
+  "repository": "git@github.com:swietektomasz/rpg-helper.git",
+  "author": "swietektomasz <swietek.tomasz@protonmail.com>",
+  "license": "MIT"
+}
