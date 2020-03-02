@@ -36,5 +36,10 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new CleanWebpackPlugin()
-  ]
+  ],
+  resolve: {
+    alias: {
+      components: path.resolve(__dirname, "./src/components")
+    }
+  }
 };

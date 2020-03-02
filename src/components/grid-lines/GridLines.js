@@ -1,16 +1,15 @@
 import React from "react";
-import { Stage, Layer, Line } from "react-konva";
+import { Line } from "react-konva";
 
-import "./game-map.css";
-
-function GridLines() {
+export function GridLines() {
   const height = window.innerHeight;
   const width = window.innerWidth;
-  const padding = 29.5;
+  const padding = 30;
   const lines = [];
   for (let i = 0; i < width / padding; i++) {
     lines.push(
       <Line
+        key={`${i}-${width / padding}`}
         points={[
           Math.round(i * padding) + 0.5,
           0,
@@ -25,6 +24,7 @@ function GridLines() {
   for (let j = 0; j < height / padding; j++) {
     lines.push(
       <Line
+        key={`${j}-${height / padding}`}
         points={[0, Math.round(j * padding), width, Math.round(j * padding)]}
         stroke={"#ddd"}
         strokeWidth={0.5}
@@ -32,18 +32,4 @@ function GridLines() {
     );
   }
   return lines;
-}
-
-export function GameMap() {
-  return (
-    <Stage
-      width={window.innerWidth}
-      height={window.innerHeight}
-      className="game-container"
-    >
-      <Layer>
-        <GridLines />
-      </Layer>
-    </Stage>
-  );
 }

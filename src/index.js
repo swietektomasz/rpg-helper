@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { GameMap } from "./game-map/GameMap";
+import { GameMap } from "components";
 
 import "./app.css";
 
