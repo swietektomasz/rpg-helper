@@ -29,6 +29,14 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader"
+          }
+        ]
       }
     ]
   },
@@ -39,7 +47,8 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      components: path.resolve(__dirname, "./src/components")
+      components: path.resolve(__dirname, "./src/components"),
+      assets: path.resolve(__dirname, "./src/assets")
     }
   }
 };
