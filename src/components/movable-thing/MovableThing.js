@@ -1,8 +1,12 @@
 import React from "react";
 import Konva from "konva";
-import { Rect } from "react-konva";
+import { Image } from "react-konva";
+import useImage from "use-image";
+import PropTypes from "prop-types";
 
-export function MovableThing() {
+export function MovableThing({ imageUrl }) {
+  const [image] = useImage(imageUrl);
+
   const handleDragStart = ({ target }) => {
     target.setAttrs({
       scaleX: 1.1,
@@ -22,17 +26,19 @@ export function MovableThing() {
   };
 
   return (
-    <Rect
+    <Image
       x={90}
       y={90}
       width={30}
       height={30}
-      fill="#000"
-      stroke="#ddd"
-      strokeWidth={1}
+      image={image}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       draggable
     />
   );
 }
+
+MovableThing.propTypes = {
+  imageUrl: PropTypes.string
+};

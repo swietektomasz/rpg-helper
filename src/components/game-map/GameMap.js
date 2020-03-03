@@ -30,7 +30,11 @@ export function GameMap() {
         <GridLines />
       </Layer>
       <Layer>
-        <MovableThing />
+        <MovableThing
+          imageUrl={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfbhEQbhS6T_6jCg4524GJ8Bf0nSA2ejNbGKOUtx_lwZgvmTuJ"
+          }
+        />
       </Layer>
     </Stage>
   );
