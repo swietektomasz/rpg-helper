@@ -14,10 +14,28 @@ export function MovableThing({ imageUrl }) {
     });
   };
 
+  const checkSides = target => {
+    if (target.attrs.x > window.innerWidth * 0.8) {
+      return window.innerWidth * 0.8 - 30;
+    } else if (target.attrs.x < 0) {
+      return 0;
+    }
+    return Math.round(target.attrs.x / 30) * 30;
+  };
+
+  const checkTopAndBottom = target => {
+    if (target.attrs.y > window.innerHeight) {
+      return window.innerHeight;
+    } else if (target.attrs.y < 0) {
+      return 0;
+    }
+    return Math.round(target.attrs.y / 30) * 30;
+  };
+
   const handleDragEnd = ({ target }) => {
     target.to({
-      x: Math.round(target.attrs.x / 30) * 30,
-      y: Math.round(target.attrs.y / 30) * 30,
+      x: checkSides(target),
+      y: checkTopAndBottom(target),
       duration: 0.5,
       easing: Konva.Easings.ElasticEaseOut,
       scaleX: 1,

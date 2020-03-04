@@ -1,0 +1,9 @@
+.sidebar-container {
+  width: 20%;
+  top: 10%;
+  background-color: white;
+}
+
+.sidebar-toggler {
+  position: relative;
+}
