@@ -12,7 +12,8 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
     hot: true,
-    compress: true
+    compress: true,
+    quiet: true
   },
   module: {
     rules: [
@@ -48,6 +49,7 @@ module.exports = {
   resolve: {
     alias: {
       components: path.resolve(__dirname, "./src/components"),
+      context: path.resolve(__dirname, "./src/context"),
       assets: path.resolve(__dirname, "./src/assets")
     }
   }

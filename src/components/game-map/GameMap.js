@@ -4,13 +4,17 @@ import useImage from "use-image";
 import PropTypes from "prop-types";
 
 import { GridLines } from "components";
+import { useThingsState } from "context/movableThingsContext";
 
 import "./game-map.css";
 
-export function GameMap({ movableThings }) {
+export function GameMap() {
+  const movableThings = useThingsState();
+
   const [image] = useImage(
     "http://www.gitzmansgallery.com/maps/Map-City-Middenheim-1.jpg"
   );
+
   return (
     <Stage
       width={window.innerWidth * 0.8}
