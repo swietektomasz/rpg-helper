@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+
+import { database } from "src/firebase/firebase";
+import { MovableThing } from "src/components";
 
 const ThingsStateContext = React.createContext();
 const ThingsDispatchContext = React.createContext();
@@ -20,6 +23,22 @@ function thingsReducer(state, action) {
 
 function ThingsProvider({ children }) {
   const [state, dispatch] = React.useReducer(thingsReducer, []);
+
+  useEffect(() => {
+    database
+      .collection("things")
+      .get()
+      .then(querySnapshot => {
+        return querySnapshot.forEach(doc => {
+          dispatch({
+            type: "add-avatar",
+            payload: (
+              <MovableThing key={doc.id} imageUrl={doc.data().imageUrl} />
+            )
+          });
+        });
+      });
+  }, []);
 
   return (
     <ThingsStateContext.Provider value={state}>

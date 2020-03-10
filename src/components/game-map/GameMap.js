@@ -3,8 +3,8 @@ import { Stage, Layer, Image } from "react-konva";
 import useImage from "use-image";
 import PropTypes from "prop-types";
 
-import { GridLines } from "components";
-import { useThingsState } from "context/movableThingsContext";
+import { GridLines } from "src/components";
+import { useThingsState } from "src/context/movableThingsContext";
 
 import "./game-map.css";
 
