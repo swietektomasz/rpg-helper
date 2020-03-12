@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { MovableThing } from "src/components";
 import { useThingsDispatch } from "src/context/movableThingsContext";
 
 import "./sidebar.css";

@@ -17,7 +17,7 @@ export function GameMap() {
 
   return (
     <Stage
-      width={window.innerWidth * 0.8}
+      width={window.innerWidth}
       height={window.innerHeight}
       className="game-container"
     >
@@ -26,7 +26,7 @@ export function GameMap() {
           x={0}
           y={0}
           height={window.innerHeight}
-          width={window.innerWidth * 0.8}
+          width={window.innerWidth}
           image={image}
         />
       </Layer>

@@ -15,8 +15,9 @@ export function MovableThing({ imageUrl }) {
   };
 
   const checkSides = target => {
-    if (target.attrs.x > window.innerWidth * 0.8) {
-      return window.innerWidth * 0.8 - 30;
+    console.log(target.attrs.x, window.innerWidth);
+    if (target.attrs.x > window.innerWidth - 30) {
+      return window.innerWidth - 30;
     } else if (target.attrs.x < 0) {
       return 0;
     }
