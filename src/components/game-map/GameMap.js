@@ -3,7 +3,7 @@ import { Stage, Layer, Image } from "react-konva";
 import useImage from "use-image";
 import PropTypes from "prop-types";
 
-import { GridLines } from "src/components";
+import { GridLines, MovableThing } from "src/components";
 import { useThingsState } from "src/context/movableThingsContext";
 
 import "./game-map.css";
@@ -33,7 +33,11 @@ export function GameMap() {
       <Layer>
         <GridLines />
       </Layer>
-      <Layer>{movableThings.map(thing => thing)}</Layer>
+      <Layer>
+        {movableThings.map(thing => (
+          <MovableThing key={thing.id} imageUrl={thing.imageUrl} />
+        ))}
+      </Layer>
     </Stage>
   );
 }
