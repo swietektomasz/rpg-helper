@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 
-import { useAvatarDispatch } from "src/context/AvatarContext";
+import { useMapDispatch } from "src/context/MapContext";
 
-import "./maps-sidebar.css";
+import "./map-sidebar.css";
 
-export function MapsSidebar() {
-  const avatarDispatch = useAvatarDispatch();
-  const [avatarImage, setAvatarImage] = useState("");
+export function MapSidebar() {
+  const mapDispatch = useMapDispatch();
+
+  const [mapImage, setMapImage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleAddingAvatar = () => {
-    avatarDispatch({
-      type: "add-avatar",
+  const handleAddingMap = () => {
+    mapDispatch({
+      type: "set-current-map",
       payload: {
-        id: `avatar-${Math.floor(Math.random() * Math.floor(1000))}`,
-        imageUrl: avatarImage
+        id: `map-${Math.floor(Math.random() * Math.floor(1000))}`,
+        imageUrl: mapImage
       }
     });
   };
+
   return (
     <div>
       <div
@@ -26,13 +28,13 @@ export function MapsSidebar() {
         }
       >
         <div className="map-sidebar-content">
-          <button onClick={handleAddingAvatar}>Add avatar</button>
+          <button onClick={handleAddingMap}>Add map</button>
           <label>
             Image URL:
             <input
               type="text"
-              value={avatarImage}
-              onChange={event => setAvatarImage(event.target.value)}
+              value={mapImage}
+              onChange={event => setMapImage(event.target.value)}
             ></input>
           </label>
         </div>

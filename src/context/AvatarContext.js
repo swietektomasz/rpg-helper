@@ -62,7 +62,7 @@ function useAvatarDispatch() {
 }
 
 AvatarProvider.propTypes = {
-  children: PropTypes.array
+  children: PropTypes.object
 };
 
 export { AvatarProvider, useAvatarState, useAvatarDispatch };

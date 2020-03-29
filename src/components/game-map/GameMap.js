@@ -4,15 +4,15 @@ import useImage from "use-image";
 
 import { GridLines, Avatar } from "src/components";
 import { useAvatarState } from "src/context/AvatarContext";
+import { useMapState } from "src/context/MapContext";
 
 import "./game-map.css";
 
 export function GameMap() {
   const avatars = useAvatarState();
+  const mapState = useMapState();
 
-  const [image] = useImage(
-    "http://www.gitzmansgallery.com/maps/Map-City-Middenheim-1.jpg"
-  );
+  const [image] = useImage(mapState.currentMap.imageUrl);
 
   return (
     <Stage
