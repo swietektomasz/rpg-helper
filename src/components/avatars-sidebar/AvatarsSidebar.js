@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 
-import { useThingsDispatch } from "src/context/movableThingsContext";
+import { useAvatarDispatch } from "src/context/AvatarContext";
 
 import "./avatars-sidebar.css";
-import { addThing } from "../../firebase/thingsCollection";
+import { addAvatar } from "../../firebase/avatarCollection";
 
 export function AvatarsSidebar() {
-  const thingsDispatch = useThingsDispatch();
+  const avatarDispatch = useAvatarDispatch();
   const [avatarImage, setAvatarImage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleAddingThings = () => {
-    addThing({ imageUrl: avatarImage }).then(thing => {
-      thingsDispatch({
+  const handleAddingAvatar = () => {
+    addAvatar({ imageUrl: avatarImage }).then(avatar => {
+      avatarDispatch({
         type: "add-avatar",
         payload: {
-          id: thing.id,
-          imageUrl: thing.imageUrl
+          id: avatar.id,
+          imageUrl: avatar.imageUrl
         }
       });
     });
@@ -32,7 +32,7 @@ export function AvatarsSidebar() {
         }
       >
         <div className="avatar-sidebar-content">
-          <button onClick={handleAddingThings}>Add avatar</button>
+          <button onClick={handleAddingAvatar}>Add avatar</button>
           <label>
             Image URL:
             <input

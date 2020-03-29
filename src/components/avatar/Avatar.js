@@ -4,7 +4,7 @@ import { Image } from "react-konva";
 import useImage from "use-image";
 import PropTypes from "prop-types";
 
-export function MovableThing({ imageUrl }) {
+export function Avatar({ imageUrl }) {
   const [image] = useImage(imageUrl);
 
   const handleDragStart = ({ target }) => {
@@ -57,6 +57,6 @@ export function MovableThing({ imageUrl }) {
   );
 }
 
-MovableThing.propTypes = {
+Avatar.propTypes = {
   imageUrl: PropTypes.string
 };

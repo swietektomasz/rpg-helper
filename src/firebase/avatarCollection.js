@@ -1,9 +1,9 @@
 import { database } from "./firebase";
 
-const thingsRef = database.collection("things");
+const avatarsRef = database.collection("avatars");
 
-export const getThings = async () => {
-  return await thingsRef.get().then(querySnapshot =>
+export const getAvatars = async () => {
+  return await avatarsRef.get().then(querySnapshot =>
     querySnapshot.docs.reduce((acc, doc) => {
       acc.push({ id: doc.id, imageUrl: doc.data().imageUrl });
       return acc;
@@ -11,10 +11,10 @@ export const getThings = async () => {
   );
 };
 
-export const addThing = async thing => {
-  return thingsRef
+export const addAvatar = async avatar => {
+  return avatarsRef
     .add({
-      imageUrl: thing.imageUrl
+      imageUrl: avatar.imageUrl
     })
     .then(docRef => {
       return docRef

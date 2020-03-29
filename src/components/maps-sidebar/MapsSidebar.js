@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
-import { useThingsDispatch } from "src/context/movableThingsContext";
+import { useAvatarDispatch } from "src/context/AvatarContext";
 
 import "./maps-sidebar.css";
 
 export function MapsSidebar() {
-  const thingsDispatch = useThingsDispatch();
+  const avatarDispatch = useAvatarDispatch();
   const [avatarImage, setAvatarImage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleAddingThings = () => {
-    thingsDispatch({
+  const handleAddingAvatar = () => {
+    avatarDispatch({
       type: "add-avatar",
       payload: {
-        id: `thing-${Math.floor(Math.random() * Math.floor(1000))}`,
+        id: `avatar-${Math.floor(Math.random() * Math.floor(1000))}`,
         imageUrl: avatarImage
       }
     });
@@ -26,7 +26,7 @@ export function MapsSidebar() {
         }
       >
         <div className="map-sidebar-content">
-          <button onClick={handleAddingThings}>Add avatar</button>
+          <button onClick={handleAddingAvatar}>Add avatar</button>
           <label>
             Image URL:
             <input
