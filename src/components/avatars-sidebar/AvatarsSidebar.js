@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useThingsDispatch } from "src/context/movableThingsContext";
 
 import "./avatars-sidebar.css";
+import { addThing } from "../../firebase/thingsCollection";
 
 export function AvatarsSidebar() {
   const thingsDispatch = useThingsDispatch();
@@ -10,14 +11,17 @@ export function AvatarsSidebar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleAddingThings = () => {
-    thingsDispatch({
-      type: "add-avatar",
-      payload: {
-        id: `thing-${Math.floor(Math.random() * Math.floor(1000))}`,
-        imageUrl: avatarImage
-      }
+    addThing({ imageUrl: avatarImage }).then(thing => {
+      thingsDispatch({
+        type: "add-avatar",
+        payload: {
+          id: thing.id,
+          imageUrl: thing.imageUrl
+        }
+      });
     });
   };
+
   return (
     <div>
       <div
