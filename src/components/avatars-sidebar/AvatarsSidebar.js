@@ -1,25 +1,37 @@
 import React, { useState } from "react";
 
-import { useAvatarDispatch } from "src/context/AvatarContext";
+import { useAvatarDispatch, useAvatarState } from "src/context/AvatarContext";
+import { addAvatar } from "../../firebase/avatarCollection";
+import { SidebarAvatar } from "./components";
 
 import "./avatars-sidebar.css";
-import { addAvatar } from "../../firebase/avatarCollection";
 
 export function AvatarsSidebar() {
   const avatarDispatch = useAvatarDispatch();
-  const [avatarImage, setAvatarImage] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const avatars = useAvatarState();
 
-  const handleAddingAvatar = () => {
-    addAvatar({ imageUrl: avatarImage }).then(avatar => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [avatarBeingAdded, setAvatarBeingAdded] = useState({
+    name: "",
+    imageUrl: ""
+  });
+
+  const handleAddingAvatar = async () => {
+    const { name, imageUrl } = avatarBeingAdded;
+
+    await addAvatar({ imageUrl, name }).then(avatar => {
       avatarDispatch({
         type: "add-avatar",
         payload: {
           id: avatar.id,
-          imageUrl: avatar.imageUrl
+          imageUrl: avatar.imageUrl,
+          name: avatar.name
         }
       });
     });
+
+    setEditing(false);
   };
 
   return (
@@ -32,22 +44,62 @@ export function AvatarsSidebar() {
         }
       >
         <div className="avatar-sidebar-content">
-          <button onClick={handleAddingAvatar}>Add avatar</button>
-          <label>
-            Image URL:
-            <input
-              type="text"
-              value={avatarImage}
-              onChange={event => setAvatarImage(event.target.value)}
-            ></input>
-          </label>
+          {editing ? (
+            <div className="avatar-portrait-edit">
+              <label className="avatar-portrait-label">
+                Name:
+                <input
+                  className="avatar-portrait-input"
+                  name="name"
+                  value={avatarBeingAdded.name}
+                  onChange={event =>
+                    setAvatarBeingAdded({
+                      ...avatarBeingAdded,
+                      name: event.target.value
+                    })
+                  }
+                />
+              </label>
+              <label className="avatar-portrait-label">
+                Image URL:
+                <input
+                  className="avatar-portrait-input"
+                  name="imageUrl"
+                  value={avatarBeingAdded.imageUrl}
+                  onChange={event =>
+                    setAvatarBeingAdded({
+                      ...avatarBeingAdded,
+                      imageUrl: event.target.value
+                    })
+                  }
+                />
+              </label>
+              <button
+                className="avatar-portrait-save"
+                onClick={handleAddingAvatar}
+              >
+                Save
+              </button>
+            </div>
+          ) : (
+            <button
+              className="add-avatar-button"
+              onClick={() => setEditing(state => !state)}
+            >
+              +
+            </button>
+          )}
+
+          {avatars.map(avatar => (
+            <SidebarAvatar key={avatar.id} {...avatar} />
+          ))}
         </div>
       </div>
       <button
         className="avatar-toggle-button"
         onClick={() => setIsOpen(!isOpen)}
       >
-        Open
+        {isOpen ? `>` : `<`}
       </button>
     </div>
   );
