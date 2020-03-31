@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useAvatarDispatch, useAvatarState } from "src/context/AvatarContext";
 import { addAvatar } from "../../firebase/avatarCollection";
-import { SidebarAvatar } from "./components";
+import { SidebarAvatar, AvatarForm } from "./components";
 
 import "./avatars-sidebar.css";
 
@@ -12,15 +12,12 @@ export function AvatarsSidebar() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [avatarBeingAdded, setAvatarBeingAdded] = useState({
-    name: "",
-    imageUrl: ""
-  });
 
-  const handleAddingAvatar = async () => {
-    const { name, imageUrl } = avatarBeingAdded;
-
-    await addAvatar({ imageUrl, name }).then(avatar => {
+  const handleAddingAvatar = async avatarData => {
+    await addAvatar({
+      imageUrl: avatarData.imageUrl,
+      name: avatarData.name
+    }).then(avatar => {
       avatarDispatch({
         type: "add-avatar",
         payload: {
@@ -45,42 +42,7 @@ export function AvatarsSidebar() {
       >
         <div className="avatar-sidebar-content">
           {editing ? (
-            <div className="avatar-portrait-edit">
-              <label className="avatar-portrait-label">
-                Name:
-                <input
-                  className="avatar-portrait-input"
-                  name="name"
-                  value={avatarBeingAdded.name}
-                  onChange={event =>
-                    setAvatarBeingAdded({
-                      ...avatarBeingAdded,
-                      name: event.target.value
-                    })
-                  }
-                />
-              </label>
-              <label className="avatar-portrait-label">
-                Image URL:
-                <input
-                  className="avatar-portrait-input"
-                  name="imageUrl"
-                  value={avatarBeingAdded.imageUrl}
-                  onChange={event =>
-                    setAvatarBeingAdded({
-                      ...avatarBeingAdded,
-                      imageUrl: event.target.value
-                    })
-                  }
-                />
-              </label>
-              <button
-                className="avatar-portrait-save"
-                onClick={handleAddingAvatar}
-              >
-                Save
-              </button>
-            </div>
+            <AvatarForm handleSubmit={handleAddingAvatar} />
           ) : (
             <button
               className="add-avatar-button"

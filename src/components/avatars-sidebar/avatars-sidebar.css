@@ -54,31 +54,3 @@
 .avatar-toggle-button:hover {
   background-color: #ddc4a1;
 }
-
-.avatar-portrait-edit {
-  display: flex;
-  flex-basis: 10vw;
-  flex-direction: column;
-}
-
-.avatar-portrait-label {
-  display: inline-block;
-  margin-top: 0.5em;
-}
-
-.avatar-portrait-input {
-  width: 100%;
-  display: inline-block;
-}
-
-.avatar-portrait-save {
-  margin-top: auto;
-  border: none;
-  background-color: #a8864b;
-  transition: background-color 0.3s ease-out;
-  font-size: large;
-}
-
-.avatar-portrait-save:hover {
-  background-color: #ddc4a1;
-}
