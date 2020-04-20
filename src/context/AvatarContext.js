@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import PropTypes, { object } from "prop-types";
 
 import { getAvatars } from "../firebase/avatarCollection";
 
@@ -27,7 +27,7 @@ function AvatarProvider({ children }) {
   const [state, dispatch] = React.useReducer(avatarReducer, []);
 
   useEffect(() => {
-    getAvatars().then(avatars =>
+    getAvatars().then((avatars) =>
       dispatch({ type: "set-avatars", payload: avatars })
     );
   }, []);
@@ -62,7 +62,10 @@ function useAvatarDispatch() {
 }
 
 AvatarProvider.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.object,
+  ]),
 };
 
 export { AvatarProvider, useAvatarState, useAvatarDispatch };

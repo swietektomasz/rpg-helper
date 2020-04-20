@@ -1,20 +1,20 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/app.js",
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
   },
   devServer: {
     contentBase: "./dist",
     hot: true,
     compress: true,
-    quiet: true
+    quiet: true,
   },
   module: {
     rules: [
@@ -24,34 +24,35 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"]
-          }
-        }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: "file-loader"
-          }
-        ]
-      }
-    ]
+            loader: "file-loader",
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new CleanWebpackPlugin(),
-    new Dotenv()
+    new Dotenv(),
   ],
   resolve: {
     alias: {
       src: path.resolve(__dirname, "./src"),
-      assets: path.resolve(__dirname, "./src/assets")
-    }
-  }
+      assets: path.resolve(__dirname, "./src/assets"),
+      shared: path.resolve(__dirname, "./src/components/shared"),
+    },
+  },
 };

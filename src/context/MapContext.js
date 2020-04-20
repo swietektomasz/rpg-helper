@@ -6,9 +6,9 @@ const MapDispatchContext = React.createContext();
 
 const INITIAL_MAP_STATE = {
   currentMap: {
-    imageUrl: "http://www.gitzmansgallery.com/maps/Map-City-Middenheim-1.jpg"
+    imageUrl: "http://www.gitzmansgallery.com/maps/Map-City-Middenheim-1.jpg",
   },
-  maps: []
+  maps: [],
 };
 
 function mapReducer(state, action) {
@@ -25,7 +25,7 @@ function mapReducer(state, action) {
     case "remove-map": {
       return {
         ...state,
-        maps: state.maps.filter(map => map.id !== action.payload.id)
+        maps: state.maps.filter((map) => map.id !== action.payload.id),
       };
     }
     default: {
@@ -67,7 +67,10 @@ function useMapDispatch() {
 }
 
 MapProvider.propTypes = {
-  children: PropTypes.array
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.object,
+  ]),
 };
 
 export { MapProvider, useMapState, useMapDispatch };

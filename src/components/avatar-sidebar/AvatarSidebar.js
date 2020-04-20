@@ -4,27 +4,27 @@ import { useAvatarDispatch, useAvatarState } from "src/context/AvatarContext";
 import { addAvatar } from "../../firebase/avatarCollection";
 import { SidebarAvatar, AvatarForm } from "./components";
 
-import "./avatars-sidebar.css";
+import "./avatar-sidebar.css";
 
-export function AvatarsSidebar() {
+export function AvatarSidebar() {
   const avatarDispatch = useAvatarDispatch();
   const avatars = useAvatarState();
 
   const [isOpen, setIsOpen] = useState(false);
   const [editing, setEditing] = useState(false);
 
-  const handleAddingAvatar = async avatarData => {
+  const handleAddingAvatar = async (avatarData) => {
     await addAvatar({
       imageUrl: avatarData.imageUrl,
-      name: avatarData.name
-    }).then(avatar => {
+      name: avatarData.name,
+    }).then((avatar) => {
       avatarDispatch({
         type: "add-avatar",
         payload: {
           id: avatar.id,
           imageUrl: avatar.imageUrl,
-          name: avatar.name
-        }
+          name: avatar.name,
+        },
       });
     });
 
@@ -46,13 +46,13 @@ export function AvatarsSidebar() {
           ) : (
             <button
               className="add-avatar-button"
-              onClick={() => setEditing(state => !state)}
+              onClick={() => setEditing((state) => !state)}
             >
               +
             </button>
           )}
 
-          {avatars.map(avatar => (
+          {avatars.map((avatar) => (
             <SidebarAvatar key={avatar.id} {...avatar} />
           ))}
         </div>

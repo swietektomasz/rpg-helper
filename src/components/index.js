@@ -1,4 +1,6 @@
-export { Avatar } from "./avatar/Avatar";
-export { GameMap } from "./game-map/GameMap";
-export { GridLines } from "./grid-lines/GridLines";
-export { AvatarsSidebar } from "./avatars-sidebar/AvatarsSidebar";
+export { Avatar } from "./avatar";
+export { AvatarSidebar } from "./avatar-sidebar";
+export { GameMap } from "./game-map/";
+export { GameStage } from "./game-stage";
+export { GridLines } from "./grid-lines";
+export { MapSidebar } from "./map-sidebar";

@@ -1,0 +1,5 @@
+.game-container {
+  width: 80%;
+  flex-shrink: 1;
+  flex-grow: 0;
+}
