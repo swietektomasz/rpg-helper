@@ -4,3 +4,4 @@ export { GameMap } from "./game-map/";
 export { GameStage } from "./game-stage";
 export { GridLines } from "./grid-lines";
 export { MapSidebar } from "./map-sidebar";
+export { SidebarContainer } from "./sidebar-container";

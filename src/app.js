@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
 
-import { GameStage, AvatarSidebar, MapSidebar } from "src/components";
-import { AvatarProvider } from "src/context/AvatarContext";
+import { GameStage, SidebarContainer } from "src/components";
+import { AvatarProvider } from "src/context";
 import { MapProvider } from "src/context/MapContext";
 
 import "./app.css";
@@ -11,9 +11,8 @@ function App() {
   return (
     <AvatarProvider>
       <MapProvider>
+        <SidebarContainer />
         <GameStage />
-        <AvatarSidebar />
-        <MapSidebar />
       </MapProvider>
     </AvatarProvider>
   );

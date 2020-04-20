@@ -1,4 +1,4 @@
-.avatar-portrait {
+.thumbnail {
   align-items: flex-end;
   background-repeat: no-repeat;
   background-size: cover;
@@ -8,7 +8,7 @@
   height: 15vh;
 }
 
-.portrait-name {
+.title {
   color: white;
   display: inline-block;
   font-size: x-large;

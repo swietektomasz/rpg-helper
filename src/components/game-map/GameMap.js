@@ -1,15 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Image } from "react-konva";
 import useImage from "use-image";
 
-import { useMapState } from "src/context/MapContext";
-
 import "./game-map.css";
 
-export function GameMap() {
-  const mapState = useMapState();
+export function GameMap({ map }) {
+  const [image] = useImage(map.imageUrl);
 
-  const [image] = useImage(mapState.currentMap.imageUrl);
-
-  return <Image image={image} />;
+  return (
+    <Image
+      image={image}
+      width={window.innerWidth}
+      height={window.innerHeight}
+    />
+  );
 }
+
+GameMap.propTypes = {
+  map: PropTypes.shape({ id: PropTypes.string, imageUrl: PropTypes.string }),
+};

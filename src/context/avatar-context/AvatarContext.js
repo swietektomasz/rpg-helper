@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import PropTypes, { object } from "prop-types";
+import PropTypes from "prop-types";
 
-import { getAvatars } from "../firebase/avatarCollection";
+import { getAvatars } from "src/firebase/avatarCollection";
 
 const AvatarStateContext = React.createContext();
 const AvatarDispatchContext = React.createContext();
@@ -45,7 +45,7 @@ function useAvatarState() {
   const context = React.useContext(AvatarStateContext);
 
   if (context === undefined) {
-    throw new Error("useCountState must be used within a CountProvider");
+    throw new Error("useAvatarState must be used within a AvatarProvider");
   }
 
   return context;
@@ -55,7 +55,7 @@ function useAvatarDispatch() {
   const context = React.useContext(AvatarDispatchContext);
 
   if (context === undefined) {
-    throw new Error("useCountState must be used within a CountProvider");
+    throw new Error("useAvatarDispatch must be used within a AvatarProvider");
   }
 
   return context;
