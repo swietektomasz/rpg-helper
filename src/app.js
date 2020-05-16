@@ -2,19 +2,18 @@ import React from "react";
 import { render } from "react-dom";
 
 import { GameStage, SidebarContainer } from "src/components";
-import { AvatarProvider } from "src/context";
-import { MapProvider } from "src/context/MapContext";
+import { CombinedContext } from "./context";
+import { Modal } from "shared/modal/Modal";
 
 import "./app.css";
 
 function App() {
   return (
-    <AvatarProvider>
-      <MapProvider>
-        <SidebarContainer />
-        <GameStage />
-      </MapProvider>
-    </AvatarProvider>
+    <CombinedContext>
+      <SidebarContainer />
+      <GameStage />
+      <Modal />
+    </CombinedContext>
   );
 }
 

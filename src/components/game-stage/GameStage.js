@@ -2,8 +2,7 @@ import React from "react";
 import { Stage, Layer } from "react-konva";
 
 import { GridLines, Avatar, GameMap } from "src/components";
-import { useAvatarState } from "src/context";
-import { useMapState } from "src/context/MapContext";
+import { useAvatarState, useMapState } from "src/context";
 
 import "./game-stage.css";
 
@@ -21,12 +20,12 @@ export function GameStage() {
         <GameMap map={currentMap} />
       </Layer>
       <Layer>
+        <GridLines />
+      </Layer>
+      <Layer>
         {avatars.map((avatar) => (
           <Avatar key={avatar.id} imageUrl={avatar.imageUrl} />
         ))}
-      </Layer>
-      <Layer>
-        <GridLines />
       </Layer>
     </Stage>
   );

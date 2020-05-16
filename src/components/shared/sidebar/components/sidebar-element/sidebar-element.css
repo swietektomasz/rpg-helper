@@ -4,7 +4,7 @@
   background-size: cover;
   display: flex;
   flex-basis: 10vw;
-  flex-shrink: 1;
+  flex-shrink: 0;
   height: 15vh;
 }
 

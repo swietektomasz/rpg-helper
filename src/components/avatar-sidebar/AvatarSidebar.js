@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useAvatarDispatch, useAvatarState } from "src/context/avatar-context";
+import { useAvatarDispatch, useAvatarState } from "src/context";
 import { addAvatar } from "src/firebase/avatarCollection";
 import { Sidebar } from "shared/sidebar";
 

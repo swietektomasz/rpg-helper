@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Sidebar } from "shared/sidebar";
-import { useMapDispatch, useMapState } from "src/context/MapContext";
+import { useMapDispatch, useMapState } from "src/context";
 
 import "./map-sidebar.css";
 
